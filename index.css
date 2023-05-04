@@ -60,7 +60,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-weight: 400;
+  font-weight: 400;
 }
 
 /* Set core body defaults */
@@ -101,7 +101,7 @@ select {
 }
 
 /* -------------------------- */
-/* Utility Classes */
+/* Utility Classes(general purpose styles) */
 /* -------------------------- */
 
 .flex {
@@ -114,9 +114,8 @@ select {
   gap: var(--gap, 1rem);
 }
 
-.flow > *:where(:not(:first-child)){
-  margin-top: var(--flow-space,1rem);
-  outline: 1px solid red;
+.flow > *:where(:not(:first-child)) {
+  margin-top: var(--flow-space, 1rem);
 }
 
 .container {
@@ -220,15 +219,78 @@ select {
   line-height: 1.1;
 }
 
-.numbered-title{
+.numbered-title {
   font-family: var(--ff-sans-cond);
   font-size: var(--fs-500);
   text-transform: uppercase;
   letter-spacing: 4.72px;
 }
 
-.numbered-title span{
+.numbered-title span {
   margin-right: 0.5em;
   font-weight: 700;
   color: hsl(var(--clr-white) / 0.25);
+}
+
+/* -------------------------- */
+/* Components(specific) */
+/* -------------------------- */
+
+.large-button {
+  position: relative;
+  display: grid;
+  z-index: 1;
+  padding: 0 2em;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  place-items: center;
+  text-decoration: none;
+}
+.large-button::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background: hsl(var(--clr-white) / 0.15);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 500ms linear, transform 750ms ease-in-out;
+}
+
+.large-button:hover::after,
+.large-button:focus::after {
+  opacity: 1;
+  transform: scale(1.5);
+}
+
+.primary-navigation {
+  --gap: 8rem;
+  --underline-gap: 2rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.primary-navigation a {
+  text-decoration: none;
+}
+
+.primary-navigation a > span {
+  font-weight: 700;
+  margin-right: .5em;
+}
+
+.underline-indicators > * {
+  padding: var(--underline-gap, 1rem) 0;
+  border-bottom: .2rem solid hsl( var(--clr-white) / 0 );
+}
+
+.underline-indicators > *:hover,
+.underline-indicators > *:focus {
+  border-color: hsl( var(--clr-white) / .5);
+}
+
+.underline-indicators > .active{
+  border-color: hsl( var(--clr-white) / 1);
 }
